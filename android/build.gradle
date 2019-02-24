@@ -14,6 +14,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.google.gms:google-services:4.0.2' // google-services plugin
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -36,4 +37,26 @@ allprojects {
 task wrapper(type: Wrapper) {
     gradleVersion = '4.7'
     distributionUrl = distributionUrl.replace("bin", "all")
+}
+
+// subprojects {
+//     afterEvaluate {project ->
+//         if (project.hasProperty("android")) {
+//             android {
+//                 compileSdkVersion rootProject.ext.compileSdkVersion
+//                 buildToolsVersion rootProject.ext.buildToolsVersion
+//             }
+//         }
+//     }
+// }
+
+subprojects {
+  project.configurations.all {
+     resolutionStrategy.eachDependency { details ->
+        if (details.requested.group == 'com.android.support'
+              && !details.requested.name.contains('multidex') ) {
+           details.useVersion "26.1.0"
+        }
+     }
+  }
 }

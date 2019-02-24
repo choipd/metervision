@@ -2,14 +2,24 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { RNCamera } from 'react-native-camera';
 
+import RNMlKit from 'react-native-firebase-mlkit';
+
 export default class Camera extends Component {
   
   takePicture = async function() {
-    if (this.camera) {
-      const options = { quality: 0.5, base64: true };
-      const data = await this.camera.takePictureAsync(options);
-      console.log(data.uri);
-    }
+    // if (this.camera) {
+    //   const options = { quality: 0.5, base64: true };
+    //   const data = await this.camera.takePictureAsync(options);
+    //   console.log(data.uri);
+    // }
+    const options = { quality: 0.5, base64: true, skipProcessing: true, forceUpOrientation: true };
+    const data = await this.camera.takePictureAsync(options);
+    // for on-device (Supports Android and iOS)
+    const deviceTextRecognition = await RNMlKit.deviceTextRecognition(data.uri); 
+    console.log('Text Recognition On-Device', deviceTextRecognition);
+    // for cloud (At the moment supports only Android)
+    // const cloudTextRecognition = await RNMlKit.cloudTextRecognition(data.uri);
+    // console.log('Text Recognition Cloud', cloudTextRecognition);
   };
 
   render() {

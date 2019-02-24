@@ -4536,6 +4536,11 @@ react-native-camera@^1.12.0:
   dependencies:
     prop-types "^15.6.2"
 
+react-native-firebase-mlkit@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-firebase-mlkit/-/react-native-firebase-mlkit-0.6.2.tgz#4fddd7f493ba1ff03c3f6b5240599ad4176bc9b9"
+  integrity sha512-ISHkwbajT+OCMGqxYXApQZFPyx6zFP+qduMambHXENZfi5g5ybHmx6Kly9kEhonoLeqvTtA6nERuH3kJhamYHw==
+
 react-native@0.58.5:
   version "0.58.5"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.58.5.tgz#672709bafd845e35ab4dd32b8ccccae32d54d552"
